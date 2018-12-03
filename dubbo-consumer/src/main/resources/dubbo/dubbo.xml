@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+	   http://code.alibabatech.com/schema/dubbo
+	   http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="dubbo-consumer" />
+    <dubbo:protocol name="dubbo" port="20881" />
+    <dubbo:registry address="zookeeper://127.0.0.1:2181" />
+
+    <dubbo:reference id="helloWorldService" interface="com.feimao.dubbo.contract.service.HelloWorldService" />
+
+    <dubbo:reference id="retryTestService" interface="com.feimao.dubbo.contract.service.RetryTestService" retries="0">
+        <dubbo:method name="randomWait" retries="3"/>
+    </dubbo:reference>
+
+    <dubbo:reference id="mockTestService" interface="com.feimao.dubbo.contract.service.MockTestService" retries="0">
+        <dubbo:method name="timeoutTest" mock="com.feimao.dubbo.consumer.mock.MockTestServiceMock" />
+        <dubbo:method name="throwExceptionTest" mock="com.feimao.dubbo.consumer.mock.MockTestServiceMock" />
+    </dubbo:reference>
+
+    <dubbo:reference id="stubTestService" interface="com.feimao.dubbo.contract.service.StubTestService"
+                     stub="com.feimao.dubbo.consumer.stub.StubTestServiceStub" retries="0"/>
+</beans>

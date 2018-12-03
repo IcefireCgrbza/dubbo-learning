@@ -1,0 +1,18 @@
+dependencies {
+    compile project(':dubbo-contract')
+    compile project(':dubbo-common')
+
+    //spring boot
+    implementation('org.springframework.boot:spring-boot-starter')
+    implementation('org.springframework.boot:spring-boot-starter-web')
+
+    //dubbo
+    compile group: 'com.alibaba', name: 'dubbo', version: dubboVersion
+    //netty，dubbo依赖
+    compile group: 'io.netty', name: 'netty-all', version: nettyVersion
+    //zk客户端，dubbo依赖
+    compile group: 'org.apache.curator', name: 'curator-framework', version: curatorVersion
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+}

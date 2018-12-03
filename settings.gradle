@@ -1,0 +1,6 @@
+rootProject.name = 'dubbo-learning'
+include 'dubbo-provider'
+include 'dubbo-consumer'
+include 'dubbo-common'
+include 'dubbo-contract'
+
