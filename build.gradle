@@ -1,0 +1,45 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.feimao'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+ext {
+	lombokVersion = '1.18.2'
+	fastjsonVersion = '1.2.49'
+	dubboVersion = '2.6.5'
+	log4jVersion = '2.11.1'
+	nettyVersion = '4.1.32.Final'
+	curatorVersion = '2.12.0'
+}
+
+buildscript {
+	ext {
+		springBootVersion = '2.1.1.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+		maven { url 'http://maven.aliyun.com/nexus/content/repositories/central/' }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+allprojects {
+	apply plugin: 'java'
+	apply plugin: 'eclipse'
+	apply plugin: 'org.springframework.boot'
+	apply plugin: 'io.spring.dependency-management'
+
+	repositories {
+		mavenCentral()
+		maven { url 'http://maven.aliyun.com/nexus/content/repositories/central/' }
+	}
+
+	dependencies {
+	}
+}
